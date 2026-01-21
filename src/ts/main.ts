@@ -137,6 +137,39 @@ const latestStableVersion = getLatestStableVersion(browserId);
 const browserNameElement = document.getElementById('latestBrowser');
 if (browserNameElement) {
     browserNameElement.innerHTML = latestStableVersion ?? 'Unknown';
+const getCaniuseStatus = (featureId: string, browserName: string, browserVersion: string | null) => {
+    if (!featureId || !browserVersion || browserName === 'unknown') {
+        return 'Unknown';
+    }
+
+    const supportData = caniuse.getSupport(featureId);
+    const browserSupport = supportData[browserName];
+    if (browserSupport && browserSupport[browserVersion]) {
+        const status = browserSupport[browserVersion];
+        if (status.startsWith('y')) {
+            return 'Supported';
+        }
+        if (status.startsWith('a')) {
+            return 'Partial';
+        }
+        if (status.startsWith('n')) {
+            return 'Unsupported';
+        }
+        return 'Unknown';
+    }
+
+    return caniuse.isSupported(featureId, `${browserName} ${browserVersion}`) ? 'Supported' : 'Unsupported';
+}
+
+var useragent = navigator.userAgent;
+document.getElementById('useragent')!.innerHTML = useragent;
+var latestStableBrowsers = caniuse.getLatestStableBrowsers();
+const browserName = getBrowserName();
+const latestStableBrowser = latestStableBrowsers.find((browser) => browser.startsWith(`${browserName} `)) ?? null;
+const latestStableVersion = latestStableBrowser ? latestStableBrowser.split(' ')[1] : null;
+const browserNameElement = document.getElementById("latestBrowser");
+if (browserNameElement) {
+    browserNameElement.innerHTML = latestStableVersion ?? 'unknown';
 }
 
 
@@ -176,6 +209,20 @@ tests.forEach((test) => {
             : { status: 'none', message: 'Caniuse: No feature mapping available.' };
 
         element.innerHTML = `${test.name} - ${result_text[1]}<br /><small>${caniuseComparison.message}</small>`;
+        const caniuseStatus = getCaniuseStatus(test.featureId, browserName, latestStableVersion);
+        const specLink = test.specUrl ? `<a href="${test.specUrl}" target="_blank" rel="noreferrer">Spec</a>` : 'Spec: N/A';
+        const wptLink = test.wptRef ? `<a href="https://wpt.fyi/results/${test.wptRef}" target="_blank" rel="noreferrer">WPT</a>` : 'WPT: N/A';
+
+        element.innerHTML = `
+            <div class="test-name">${test.name} - ${result_text[1]}</div>
+            <div class="test-meta">
+                ${specLink}
+                <span class="separator">|</span>
+                ${wptLink}
+                <span class="separator">|</span>
+                <span class="caniuse-status">Can I use: ${caniuseStatus}</span>
+            </div>
+        `;
 
         document.querySelector('.tests')!.appendChild(element);
     })
