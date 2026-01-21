@@ -70,7 +70,8 @@ const getLatestStableVersion = (browserId: BrowserId) => {
     }
 
     const releaseDates = agentData.release_date ?? {};
-    const latestRelease = Object.entries(releaseDates).reduce(
+    const releaseEntries = Object.entries(releaseDates) as [string, number][];
+    const latestRelease = releaseEntries.reduce(
         (latest, [version, releaseDate]) => {
             if (releaseDate > latest.releaseDate) {
                 return { version, releaseDate };
@@ -84,7 +85,7 @@ const getLatestStableVersion = (browserId: BrowserId) => {
         return latestRelease.version;
     }
 
-    const versions = agentData.versions?.filter((entry) => entry) ?? [];
+    const versions = agentData.versions?.filter((entry): entry is string => Boolean(entry)) ?? [];
     return versions.length > 0 ? versions[versions.length - 1] : null;
 };
 
