@@ -13,11 +13,13 @@ const tests = [
         name: "Cookies",
         test: "/tests/cookies.js",
         points: 50,
+        caniuseFeature: "cookie-store-api",
     },
     {
         name: "BigInt",
         test: "/tests/bigint.js",
         points: 50,
+        caniuseFeature: "bigint",
     }
 ]
 
