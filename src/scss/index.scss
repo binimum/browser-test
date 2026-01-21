@@ -4,6 +4,28 @@ main {
     h1 {
         text-align: center;
     }
+
+    .browser-meta {
+        display: grid;
+        gap: 0.35em;
+        margin-bottom: 1em;
+    }
+
+    .summary {
+        margin-bottom: 1.2em;
+        padding: 0.75em 1em;
+        border-radius: 0.5em;
+        background: #f1f3f5;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4em;
+        align-items: center;
+    }
+
+    .separator {
+        opacity: 0.6;
+    }
+
     ul.tests {
         list-style-type: none;
         padding: 0;

@@ -11,6 +11,14 @@ They return 4 if unknown.
 import type { BrowserTest } from './tests/types';
 import runBigIntTest from './tests/bigint';
 import runCookiesTest from './tests/cookies';
+import runCssGridTest from './tests/css-grid';
+import runFetchTest from './tests/fetch';
+import runServiceWorkerTest from './tests/service-worker';
+import runWebAssemblyTest from './tests/webassembly';
+import runWebAudioTest from './tests/web-audio';
+import runWebCryptoTest from './tests/web-crypto';
+import runWebGl2Test from './tests/webgl2';
+import runWebRtcTest from './tests/webrtc';
 
 const tests: BrowserTest[] = [
     {
@@ -18,14 +26,10 @@ const tests: BrowserTest[] = [
         points: 50,
         run: runCookiesTest,
         spec: {
-            title: 'W3C HTML 5.2: document.cookie',
-            url: 'https://www.w3.org/TR/html52/semantics-scripting.html#dom-document-cookie',
+            title: 'W3C HTML: document.cookie',
+            url: 'https://html.spec.whatwg.org/multipage/webstorage.html#dom-document-cookie',
         },
         caniuseFeature: 'cookie-store-api',
-        caniuseFeature: "cookie-store-api",
-        featureId: "cookies",
-        specUrl: "https://www.rfc-editor.org/rfc/rfc6265",
-        wptRef: "cookies/",
     },
     {
         name: 'BigInt',
@@ -37,45 +41,86 @@ const tests: BrowserTest[] = [
         },
         caniuseFeature: 'bigint',
     },
+    {
+        name: 'Web Crypto',
+        points: 60,
+        run: runWebCryptoTest,
+        spec: {
+            title: 'W3C Web Crypto API',
+            url: 'https://www.w3.org/TR/WebCryptoAPI/',
+        },
+        caniuseFeature: 'cryptography',
+    },
+    {
+        name: 'Fetch API',
+        points: 60,
+        run: runFetchTest,
+        spec: {
+            title: 'Fetch Standard',
+            url: 'https://fetch.spec.whatwg.org/',
+        },
+        caniuseFeature: 'fetch',
+    },
+    {
+        name: 'CSS Grid',
+        points: 60,
+        run: runCssGridTest,
+        spec: {
+            title: 'W3C CSS Grid Layout Module',
+            url: 'https://www.w3.org/TR/css-grid-1/',
+        },
+        caniuseFeature: 'css-grid',
+    },
+    {
+        name: 'Service Workers',
+        points: 60,
+        run: runServiceWorkerTest,
+        spec: {
+            title: 'W3C Service Workers',
+            url: 'https://www.w3.org/TR/service-workers/',
+        },
+        caniuseFeature: 'serviceworkers',
+    },
+    {
+        name: 'WebAssembly',
+        points: 60,
+        run: runWebAssemblyTest,
+        spec: {
+            title: 'W3C WebAssembly Core Specification',
+            url: 'https://www.w3.org/TR/wasm-core-1/',
+        },
+        caniuseFeature: 'wasm',
+    },
+    {
+        name: 'Web Audio',
+        points: 50,
+        run: runWebAudioTest,
+        spec: {
+            title: 'W3C Web Audio API',
+            url: 'https://www.w3.org/TR/webaudio/',
+        },
+        caniuseFeature: 'audio-api',
+    },
+    {
+        name: 'WebGL 2',
+        points: 50,
+        run: runWebGl2Test,
+        spec: {
+            title: 'Khronos WebGL 2.0',
+            url: 'https://www.khronos.org/registry/webgl/specs/latest/2.0/',
+        },
+        caniuseFeature: 'webgl2',
+    },
+    {
+        name: 'WebRTC',
+        points: 60,
+        run: runWebRtcTest,
+        spec: {
+            title: 'W3C WebRTC 1.0',
+            url: 'https://www.w3.org/TR/webrtc/',
+        },
+        caniuseFeature: 'rtcpeerconnection',
+    },
 ];
-        caniuseFeature: "bigint",
-    }
-        featureId: "bigint",
-        specUrl: "https://tc39.es/ecma262/#sec-bigint-objects",
-        wptRef: "js/bigint/",
-    },
-    {
-        name: "Web Crypto",
-        test: "/tests/web-crypto.js",
-        points: 60,
-        featureId: "cryptography",
-        specUrl: "https://www.w3.org/TR/WebCryptoAPI/",
-        wptRef: "WebCryptoAPI/",
-    },
-    {
-        name: "Fetch API",
-        test: "/tests/fetch.js",
-        points: 60,
-        featureId: "fetch",
-        specUrl: "https://fetch.spec.whatwg.org/",
-        wptRef: "fetch/api/",
-    },
-    {
-        name: "CSS Grid",
-        test: "/tests/css-grid.js",
-        points: 60,
-        featureId: "css-grid",
-        specUrl: "https://www.w3.org/TR/css-grid-1/",
-        wptRef: "css/css-grid/",
-    },
-    {
-        name: "Service Workers",
-        test: "/tests/service-workers.js",
-        points: 60,
-        featureId: "serviceworkers",
-        specUrl: "https://www.w3.org/TR/service-workers/",
-        wptRef: "service-workers/",
-    },
-]
 
 export { tests };
