@@ -6,10 +6,14 @@ main {
     }
     ul.tests {
         list-style-type: none;
+        padding: 0;
         li {
             margin: 0.5em;
-            padding: 0.5em;
+            padding: 0.75em;
             border-radius: 0.5em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4em;
             &.passed {
                 background: #28a745;
                 color: #fff;
@@ -19,14 +23,33 @@ main {
                 color: #fff;
             }
             &.partial {
-                background: yellow;
+                background: #f5c542;
                 color: #000;
             }
             &.unknown {
                 background: #6c757d;
                 color: #fff;
             }
-        
+
+            .test-title {
+                font-weight: 600;
+            }
+
+            .test-details {
+                font-size: 0.9em;
+            }
+
+            .test-meta {
+                font-size: 0.85em;
+                display: flex;
+                flex-direction: column;
+                gap: 0.2em;
+            }
+
+            .test-meta-item a {
+                color: inherit;
+                text-decoration: underline;
+            }
         }
     }
 }

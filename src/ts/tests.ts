@@ -8,17 +8,31 @@ They return 3 if because of a user setting.
 They return 4 if unknown.
 */
 
-const tests = [
+import type { BrowserTest } from './tests/types';
+import runBigIntTest from './tests/bigint';
+import runCookiesTest from './tests/cookies';
+
+const tests: BrowserTest[] = [
     {
-        name: "Cookies",
-        test: "/tests/cookies.js",
+        name: 'Cookies',
         points: 50,
+        run: runCookiesTest,
+        spec: {
+            title: 'W3C HTML 5.2: document.cookie',
+            url: 'https://www.w3.org/TR/html52/semantics-scripting.html#dom-document-cookie',
+        },
+        caniuseFeature: 'cookie-store-api',
     },
     {
-        name: "BigInt",
-        test: "/tests/bigint.js",
+        name: 'BigInt',
         points: 50,
-    }
-]
+        run: runBigIntTest,
+        spec: {
+            title: 'W3C Web IDL: bigint type',
+            url: 'https://www.w3.org/TR/WebIDL-1/#idl-bigint',
+        },
+        caniuseFeature: 'bigint',
+    },
+];
 
 export { tests };
