@@ -13,6 +13,7 @@ const tests = [
         name: "Cookies",
         test: "/tests/cookies.js",
         points: 50,
+        caniuseFeature: "cookie-store-api",
         featureId: "cookies",
         specUrl: "https://www.rfc-editor.org/rfc/rfc6265",
         wptRef: "cookies/",
@@ -21,6 +22,8 @@ const tests = [
         name: "BigInt",
         test: "/tests/bigint.js",
         points: 50,
+        caniuseFeature: "bigint",
+    }
         featureId: "bigint",
         specUrl: "https://tc39.es/ecma262/#sec-bigint-objects",
         wptRef: "js/bigint/",

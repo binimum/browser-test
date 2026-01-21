@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/caniuse-api": "^3.0.6",
     "@types/node": "^20.11.19",
     "postcss": "^8.4.35",
     "postcss-preset-env": "^9.3.0",
@@ -25,7 +24,7 @@
     "@shoelace-style/shoelace": "^2.14.0",
     "@vitejs/plugin-legacy": "^5.3.0",
     "babel": "^6.23.0",
-    "caniuse-api": "^3.0.0",
+    "caniuse-lite": "^1.0.30001765",
     "core-js": "^3.36.0",
     "postcss-load-config": "^5.0.3"
   }
