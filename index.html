@@ -4,19 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Does my browser support...</title>
-
   </head>
   <body>
-    <nav>
-
-    </nav>
     <main>
       <h1>Does your browser support...</h1>
-      <span>Your useragent: <span id="useragent"></span></span>
-      <br />
-      <span>The latest version of your browser is <span id="latestBrowser"></span></span>
-      <ul class="tests">
-      </ul>
+      <div class="browser-meta">
+        <div><strong>User agent:</strong> <span id="useragent"></span></div>
+        <div><strong>Detected browser:</strong> <span id="detectedBrowser"></span></div>
+        <div><strong>Latest stable version:</strong> <span id="latestBrowser"></span></div>
+      </div>
+      <div id="summary" class="summary"></div>
+      <ul class="tests"></ul>
     </main>
     <script type="module" src="/src/ts/main.ts"></script>
   </body>
